@@ -1,0 +1,40 @@
+package com.jazz.drl.rules;
+
+import com.jazz.model.OrderRequest;
+import com.jazz.model.CustomerType;
+global com.jazz.model.OrderDiscount orderDiscount;
+
+dialect "mvel"
+
+rule "Age based discount"
+    when
+        OrderRequest(age < 20 || age > 60)
+    then
+        System.out.println("==========Adding 10% discount for Kids/ senior customer=============");
+        orderDiscount.setDiscount(orderDiscount.getDiscount() + 10);
+end
+
+
+rule "Amount based discount"
+    when
+        OrderRequest(amount > 900)
+    then
+        System.out.println("==========Adding 5% discount for amount more than $900 =============");
+        orderDiscount.setDiscount(orderDiscount.getDiscount() + 5);
+end
+
+rule "Customer type based discount - Loyal customer"
+    when
+        OrderRequest(customerType.getValue == "LOYAL")
+    then
+        System.out.println("==========Adding 5% discount for LOYAL customer=============");
+        orderDiscount.setDiscount(orderDiscount.getDiscount() + 5);
+end
+
+rule "Customer type based discount - others"
+    when
+        OrderRequest(customerType.getValue != "LOYAL")
+    then
+        System.out.println("==========Adding 3% discount for NEW or DISSATISFIED customer=============");
+        orderDiscount.setDiscount(orderDiscount.getDiscount() + 3);
+end

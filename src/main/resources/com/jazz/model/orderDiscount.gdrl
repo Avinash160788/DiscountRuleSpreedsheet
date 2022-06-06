@@ -1,0 +1,3 @@
+package com.jazz.model;
+
+global com.jazz.model.OrderDiscount orderDiscount;

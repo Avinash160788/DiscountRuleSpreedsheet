@@ -6,12 +6,23 @@ package com.jazz.drools;
 
 public class RuleObject implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    public RuleObject() {
-    }
+	private java.lang.Integer UUID;
 
+	public RuleObject() {
+	}
 
+	public java.lang.Integer getUUID() {
+		return this.UUID;
+	}
 
+	public void setUUID(java.lang.Integer UUID) {
+		this.UUID = UUID;
+	}
+
+	public RuleObject(java.lang.Integer UUID) {
+		this.UUID = UUID;
+	}
 
 }
